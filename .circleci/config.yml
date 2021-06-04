@@ -1,7 +1,7 @@
 version: 2  # use CircleCI 2.0 instead of CircleCI Classic
 jobs:  # basic units of work in a run
   build:  # runs not using Workflows must have a `build` job as entry point
-    parallelism: 4  # run only one instance of this job
+    parallelism: 5  # run only one instance of this job
     docker:  # run the steps with Docker
       - image: circleci/elixir:1.12.1  # ...with this image as the primary container; this is where all `steps` will run
         environment:  # environment variables for primary container
