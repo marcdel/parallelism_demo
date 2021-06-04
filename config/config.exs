@@ -7,4 +7,4 @@ config :parallelism_demo, ParallelismDemo.Repo,
   hostname: "localhost"
 
 config :parallelism_demo,
-       ecto_repos: [ParallelismDemo.Repo]
+  ecto_repos: [ParallelismDemo.Repo]

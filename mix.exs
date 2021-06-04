@@ -22,7 +22,8 @@ defmodule ParallelismDemo.MixProject do
   defp deps do
     [
       {:ecto_sql, "~> 3.0"},
-      {:postgrex, ">= 0.0.0"}
+      {:postgrex, ">= 0.0.0"},
+      {:junit_formatter, "~> 3.1", only: [:test]}
     ]
   end
 end

@@ -44,9 +44,7 @@ jobs:  # basic units of work in a run
 
       - run:
           command: |
-            echo $(ls **/*_test.exs) > test_files.txt
-            echo $(circleci tests glob "**/*_test.exs" | circleci tests split --split-by=timings < test_files.txt)
-            circleci tests glob "**/*_test.exs" | circleci tests split --split-by=timings < test_files.txt | mix test
+            circleci tests glob "**/*_test.exs" | circleci tests split --split-by=timings --timings-type=classname | mix test
 
       - store_test_results:  # upload junit test results for display in Test Summary
           # Read more: https://circleci.com/docs/2.0/collect-test-data/
