@@ -1,7 +1,7 @@
 version: 2  # use CircleCI 2.0 instead of CircleCI Classic
 jobs:  # basic units of work in a run
   build:  # runs not using Workflows must have a `build` job as entry point
-    parallelism: 5  # run only one instance of this job
+    parallelism: 4  # run only one instance of this job
     docker:  # run the steps with Docker
       - image: circleci/elixir:1.12.1  # ...with this image as the primary container; this is where all `steps` will run
         environment:  # environment variables for primary container
@@ -44,7 +44,9 @@ jobs:  # basic units of work in a run
 
       - run:
           command: |
-            circleci tests glob "**/*_test.exs" | circleci tests split --split-by=timings | mix test
+            echo $(ls **/*_test.exs) > test_files.txt
+            echo $(circleci tests glob "**/*_test.exs" | circleci tests split --split-by=timings < test_files.txt)
+            circleci tests glob "**/*_test.exs" | circleci tests split --split-by=timings < test_files.txt | mix test
 
       - store_test_results:  # upload junit test results for display in Test Summary
           # Read more: https://circleci.com/docs/2.0/collect-test-data/
